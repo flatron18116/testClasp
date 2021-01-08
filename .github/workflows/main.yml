@@ -29,7 +29,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - run: sudo npm ci
+    - run: sudo npm i clasp -g
 
     - name: generate clasprc.json _1
       run: sudo sed -i -e "s/\"access_token\":\"dummy\"/\"access_token\":\"${ACCESS_TOKEN}\"/" clasprc.json
