@@ -53,8 +53,10 @@ jobs:
     - name: set clasprc
       run: sudo cat clasprc.json > ~/.clasprc.json
 
-    - name: push
-      run: sudo npx clasp push --force
+    - name: test
+      run: ls -l
+#    - name: push
+#      run: sudo npx clasp push --force
 
-    - name: deploy
-      run: sudo npx clasp deploy
+#    - name: deploy
+#      run: sudo npx clasp deploy
