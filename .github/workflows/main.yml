@@ -1,0 +1,63 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+env:
+  ACCESS_TOKEN: ${{ secrets.PROD_ACCESS_TOKEN }}
+  ID_TOKEN: ${{ secrets.PROD_ID_TOKEN }}
+  REFRESH_TOKEN: ${{ secrets.PROD_REFRESH_TOKEN }}
+  CLIENT_ID: ${{ secrets.PROD_CLIENT_ID }}
+  CLIENT_SECRET: ${{ secrets.PROD_CLIENT_SECRET }}
+  SCRIPT_ID: ${{ secrets.PROD_SCRIPT_ID }}
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**/**.js'
+      - '**/**.tc'
+      - '**/**.gs'
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: npm ci
+
+    - name: generate clasprc.json _1
+      run: sudo sed -i -e "s/\"access_token\":\"dummy\"/\"access_token\":\"${ACCESS_TOKEN}\"/" clasprc.json
+
+    - name: generate clasprc.json _2
+      run: sudo sed -i -e "s/\"id_token\":\"dummy\"/\"id_token\":\"${ID_TOKEN}\"/" clasprc.json
+
+    - name: generate clasprc.json _3
+      run: sudo sed -i -e "s/\"clientId\":\"dummy\"/\"clientId\":\"${CLIENT_ID}\"/" clasprc.json
+
+    - name: generate clasprc.json _4
+      run: sudo sed -i -e "s/\"clientSecret\":\"dummy\"/\"clientSecret\":\"${CLIENT_SECRET}\"/" clasprc.json
+
+    - name: generate clasprc.json _5
+      run: sudo sed -i -e "s@\"refresh_token\":\"dummy\"@\"refresh_token\":\"${REFRESH_TOKEN}\"@" clasprc.json
+
+    - name: generate .clasp.json
+      run: |
+        sudo sed -i -e "s/\"scriptId\":\"dummy\"/\"scriptId\":\"${SCRIPT_ID}\"/" ./scripts/.clasp.json
+  
+    - name: set clasprc
+      run: sudo cat clasprc.json > ~/.clasprc.json
+
+    - name: push
+      run: |
+        cd ./scripts
+        sudo clasp push --force
+    - name: deploy
+      run: |
+        cd ./scripts
+        sudo clasp deploy
