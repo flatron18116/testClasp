@@ -52,9 +52,6 @@ jobs:
   
     - name: set clasprc
       run: cat clasprc.json > ~/.clasprc.json
-
-    - name: test
-      run: ls -la ./node_modules/.bin
       
     - name: push
       run: npm run push
