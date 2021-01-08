@@ -56,8 +56,8 @@ jobs:
     - name: push
       run: |
         cd ./scripts
-        sudo npx clasp push --force
+        sudo clasp push --force
     - name: deploy
       run: |
         cd ./scripts
-        sudo npx clasp deploy
+        sudo clasp deploy
