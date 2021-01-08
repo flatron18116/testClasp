@@ -4,12 +4,12 @@
 name: Node.js CI
 
 env:
-  ACCESS_TOKEN: ${{ secrets.PROD_ACCESS_TOKEN }}
-  ID_TOKEN: ${{ secrets.PROD_ID_TOKEN }}
-  REFRESH_TOKEN: ${{ secrets.PROD_REFRESH_TOKEN }}
-  CLIENT_ID: ${{ secrets.PROD_CLIENT_ID }}
-  CLIENT_SECRET: ${{ secrets.PROD_CLIENT_SECRET }}
-  SCRIPT_ID: ${{ secrets.PROD_SCRIPT_ID }}
+  ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+  ID_TOKEN: ${{ secrets.ID_TOKEN }}
+  REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
+  CLIENT_ID: ${{ secrets.CLIENT_ID }}
+  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+  SCRIPT_ID: ${{ secrets.SCRIPT_ID }}
 
 on:
   push:
