@@ -3,14 +3,6 @@
 
 name: Node.js CI
 
-env:
-  ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-  ID_TOKEN: ${{ secrets.ID_TOKEN }}
-  REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
-  CLIENT_ID: ${{ secrets.CLIENT_ID }}
-  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-  SCRIPT_ID: ${{ secrets.SCRIPT_ID }}
-
 on:
   push:
     branches: [ main ]
@@ -20,6 +12,16 @@ on:
       - '**/**.gs'
 jobs:
   build:
+
+    environment: PROD
+    
+    env:
+     ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+     ID_TOKEN: ${{ secrets.ID_TOKEN }}
+     REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
+     CLIENT_ID: ${{ secrets.CLIENT_ID }}
+     CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+     SCRIPT_ID: ${{ secrets.SCRIPT_ID }}
 
     runs-on: ubuntu-18.04
 
