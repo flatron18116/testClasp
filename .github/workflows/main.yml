@@ -50,7 +50,7 @@ jobs:
 
     - name: generate .clasp.json
       run: |
-        sed -i -e "s/\"scriptId\":\"dummy\"/\"scriptId\":\"${SCRIPT_ID}\"/" ./scripts/.clasp.json
+        sed -i -e "s/\"scriptId\":\"dummy\"/\"scriptId\":\"${SCRIPT_ID}\"/" .clasp.json
   
     - name: set clasprc
       run: cat clasprc.json > ~/.clasprc.json
