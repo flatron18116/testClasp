@@ -1,3 +1,4 @@
 function myFunction() {
-  Logger.log('OK3');
+  Logger.log('OK1');
+  Logger.log('OK2');
 }
